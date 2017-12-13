@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Part 1</title>
+</head>
+<body onload=do_game()>
+
+<script>
+var colors= ["Aqua","Blue","Cyan","Gray","Lime","Maroon","Olive","Purple","Red","Yellow"];
+
+        var target;
+        var guesses = 0;
+        var finished = false;
+        var guess_input;
+
+
+function do_game()
+{
+	 var target_index = Math.random() * colors.length;
+	 target=Math.floor(target_index);
+	   colors.sort(); //for sorting the function on its own .
+
+	 
+   do {
+      guess_input = prompt("I am thinking of one of these colors\n\n" + colors + "\n\nWhat color am I thinking");
+      guesses+=1;
+    
+     }while (check_guess());
+      
+
+  }
+
+function check_guess()
+{
+	var test=colors.indexOf(guess_input);
+	if (test < 0)
+                alert("I don't recognize that color!");
+            else if (test > target)
+                alert("Your input is alphabetically higher than mine!");
+            else if (test< target)
+                alert("Your input is alphabetically lower than mine!");
+            else {
+                mybody = document.getElementsByTagName("body")[0];
+                mybody.style.background = colors[target];
+                alert("You are right! You took " + guesses + " guesses!");
+                return false;//Condition so that the while loop stops.
+            }
+            return true;//The loop run till the correct guess is not made.
+}
+
+
+	
+
+</script>
+
+</body>
+</html>
